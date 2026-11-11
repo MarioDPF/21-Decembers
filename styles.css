@@ -1,0 +1,273 @@
+/* 1. Fuente personalizada */
+@font-face {
+  font-family: 'DynaPuff';
+  src: url('./fonts/DynaPuff-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+h1, h2, h3 {
+  font-family: 'DynaPuff', cursive, sans-serif;
+}
+
+/* 2. Configuración del body con fondo espiral pastel */
+body {
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background-color: #fdfbf7;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200vw;
+  height: 200vh;
+  z-index: -1;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    #ffb3ba 0deg,
+    #ffdfba 60deg,
+    #ffffba 120deg,
+    #baffc9 180deg,
+    #bae1ff 240deg,
+    #e8baff 300deg,
+    #ffb3ba 360deg
+  );
+  filter: blur(50px);
+  opacity: 0.8;
+}
+
+/* 3. Formulario centrado */
+#form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+}
+
+#avisoApellidos {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.345);
+}
+
+/* 4. Tarjeta contenedora con baja opacidad (Glassmorphism) */
+.contenedor-card {
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+/* 5. Título animado en ola */
+#titulo {
+  font-family: 'DynaPuff', cursive, sans-serif;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin: 0;
+}
+
+#titulo span {
+  display: inline-block;
+  animation: ola 1.2s infinite ease-in-out;
+  animation-delay: calc(0.1s * var(--i));
+  transition: color 0.4s ease;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+}
+
+@keyframes ola {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* 6. Borde del Input estilo Serpiente Arcoíris */
+.borde-arcoiris {
+  position: relative;
+  border-radius: 14px;
+  padding: 3px;
+  background: linear-gradient(
+    90deg,
+    #ffb3ba,
+    #ffdfba,
+    #ffffba,
+    #baffc9,
+    #bae1ff,
+    #e8baff,
+    #ffb3ba
+  );
+  background-size: 300% 100%;
+  animation: serpienteArcoiris 3s linear infinite;
+  width: 90%;
+}
+
+@keyframes serpienteArcoiris {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+/* Interior del Input (Fondo Arcoíris Pastel Estático) */
+#name {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 11px;
+  outline: none;
+  font-family: inherit;
+  font-size: 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 179, 186, 0.45),
+    rgba(255, 223, 186, 0.45),
+    rgba(255, 255, 186, 0.45),
+    rgba(186, 255, 201, 0.45),
+    rgba(186, 225, 255, 0.45),
+    rgba(232, 186, 255, 0.45)
+  );
+  color: #333;
+}
+
+#name::placeholder {
+  color: rgba(51, 51, 51, 0.6);
+}
+
+/* 7. Estilo y animación del Botón (#boton) */
+#boton {
+  font-family: 'DynaPuff', cursive, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.8rem 2.2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #bae1ff, #e8baff);
+  color: #4a4a4a;
+  box-shadow: 0 4px 15px rgba(186, 225, 255, 0.6);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#boton:hover {
+  background: linear-gradient(135deg, #ffb3ba, #bae1ff);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(255, 179, 186, 0.7);
+  color: #2d2d2d;
+}
+
+#boton:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+#boton::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: rotate(30deg);
+  animation: brilloBoton 4s infinite;
+}
+
+@keyframes brilloBoton {
+  0% {
+    left: -60%;
+  }
+  20%, 100% {
+    left: 140%;
+  }
+}
+
+/* 8. Estilo y animaciones de palabras flotantes en el fondo (con mayor legibilidad) */
+.palabra-fondo {
+  position: fixed;
+  font-family: 'DynaPuff', cursive, sans-serif;
+  font-weight: 800; /* Mayor peso tipográfico */
+  /* Sombra múltiple: contorno oscuro suave + resplandor blanco de contraste */
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.25),
+    0 0 12px rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+  z-index: -1;
+  user-select: none;
+  white-space: nowrap;
+  opacity: 0.85; /* Opacidad aumentada para que no se pierdan */
+  will-change: transform, opacity;
+}
+
+/* Animación 1: Entra desde abajo y sube en diagonal */
+.diagonal-arriba {
+  top: 110vh;
+  animation: moverDiagonalArriba linear forwards;
+}
+
+@keyframes moverDiagonalArriba {
+  0% {
+    transform: translate(0, 0) rotate(-15deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  90% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(40vw, -130vh) rotate(-15deg);
+    opacity: 0;
+  }
+}
+
+/* Animación 2: Entra desde arriba y baja en diagonal */
+.diagonal-abajo {
+  top: -10vh;
+  animation: moverDiagonalAbajo linear forwards;
+}
+
+@keyframes moverDiagonalAbajo {
+  0% {
+    transform: translate(0, 0) rotate(15deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  90% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(40vw, 130vh) rotate(15deg);
+    opacity: 0;
+  }
+}
